@@ -1,4 +1,7 @@
 defmodule Voting.Factory do
+  @moduledoc """
+  Mock Repository
+  """
   # with Ecto
   use ExMachina.Ecto, repo: Voting.Repo
 
