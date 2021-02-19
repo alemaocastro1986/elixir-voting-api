@@ -20,7 +20,8 @@ defmodule VotingWeb.Admin.SessionControllerTest do
     test "Return status 200 when admin credentials are valid", %{conn: conn} do
       conn = post(conn, @singn_in_route, @admin_valid)
 
-      assert %{"status" => "ok", "data" => %{"name" => "Jane Doe"}} = json_response(conn, 200)
+      assert %{"status" => "ok", "data" => %{"name" => "Jane Doe", "token" => _}} =
+               json_response(conn, 200)
     end
 
     test "Return status 401 when admin email invalid", %{conn: conn} do
