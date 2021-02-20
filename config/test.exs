@@ -20,3 +20,5 @@ config :voting, VotingWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+# Bcrypt library
+config :bcrypt_elixir, :log_rounds, 4
