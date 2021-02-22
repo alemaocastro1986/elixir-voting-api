@@ -1,4 +1,7 @@
 defmodule Voting.AuthCase do
+  @moduledoc """
+   Auth Case to set header authorization in conn
+  """
   import Voting.Factory
   import Plug.Conn
 
