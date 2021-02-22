@@ -19,7 +19,7 @@ defmodule VotingWeb.Router do
   scope "/api/v1", VotingWeb do
     pipe_through :api_as_admin
 
-    post("/elections", ElectionController, :create)
+    post("/elections", Admin.ElectionController, :create)
   end
 
   # Enables LiveDashboard only for development
