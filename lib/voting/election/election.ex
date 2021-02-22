@@ -1,4 +1,4 @@
-defmodule Election do
+defmodule Voting.Election do
   @moduledoc """
   Election schema
   """
