@@ -8,12 +8,12 @@ defmodule Voting.Repo.Migrations.CreateElection do
       add :notice, :string
       add :starts_at, :utc_datetime, null: false
       add :ends_at, :utc_datetime, null: false
-      add :created_by, references(:administrators, on_delete: :nothing),
+      add :created_by_id, references(:administrators, on_delete: :nothing),
       null: false
 
       timestamps()
     end
 
-    create index(:elections, [:created_by])
+    create index(:elections, [:created_by_id])
   end
 end
