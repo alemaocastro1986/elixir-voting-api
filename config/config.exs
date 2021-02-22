@@ -31,6 +31,10 @@ config :voting, VotingWeb.Guardian,
   issuer: "voting_web",
   secret_key: "sy3tTb1KKMnlUIAiU8zTlkA9WS2MKRcc34qJGXVJlqMPKeIngy0BWsFAUixg3ZhS"
 
+config :voting, VotingWeb.Plugs.AuthAccessPipeline,
+  module: VotingWeb.Guardian,
+  error_handler: VotingWeb.Plugs.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
