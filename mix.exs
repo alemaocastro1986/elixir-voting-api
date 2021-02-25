@@ -1,4 +1,5 @@
 defmodule Voting.MixProject do
+  @moduledoc false
   use Mix.Project
 
   def project do
@@ -46,7 +47,8 @@ defmodule Voting.MixProject do
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:bcrypt_elixir, "~> 2.0"},
       {:ex_machina, "~> 2.6.0", only: :test},
-      {:guardian, "2.1.1"}
+      {:guardian, "2.1.1"},
+      {:mimic, "~> 1.4", only: :test}
     ]
   end
 

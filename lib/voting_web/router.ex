@@ -20,6 +20,7 @@ defmodule VotingWeb.Router do
     pipe_through :api_as_admin
 
     post("/elections", Admin.ElectionController, :create)
+    post("/uploads", Admin.UploadController, :create)
   end
 
   # Enables LiveDashboard only for development
