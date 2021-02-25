@@ -22,3 +22,4 @@ config :voting, VotingWeb.Endpoint,
 config :logger, level: :warn
 # Bcrypt library
 config :bcrypt_elixir, :log_rounds, 4
+config :voting, file_module: Voting.FakeFile

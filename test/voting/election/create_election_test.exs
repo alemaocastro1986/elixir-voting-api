@@ -10,7 +10,7 @@ defmodule Voting.CreateElectionTest do
   alias Voting.{CreateElection, Election}
 
   setup do
-    admin = insert(:admin)
+    _admin = insert(:admin)
     :ok
   end
 
