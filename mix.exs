@@ -11,7 +11,14 @@ defmodule Voting.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -48,7 +55,9 @@ defmodule Voting.MixProject do
       {:bcrypt_elixir, "~> 2.0"},
       {:ex_machina, "~> 2.6.0", only: :test},
       {:guardian, "2.1.1"},
-      {:mimic, "~> 1.4", only: :test}
+      {:mimic, "~> 1.4", only: :test},
+      # tracking test coverage
+      {:excoveralls, "~>0.14.0", only: [:test, :dev]}
     ]
   end
 

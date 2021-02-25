@@ -1,4 +1,7 @@
 defmodule VotingWeb.Admin.ElectionControllerTest do
+  @moduledoc """
+  Election Controller test
+  """
   use ExUnit.Case
   use VotingWeb.ConnCase, async: true
 
