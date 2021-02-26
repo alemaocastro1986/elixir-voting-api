@@ -23,4 +23,15 @@ defmodule Voting.Factory do
       created_by: build(:admin)
     }
   end
+
+  @spec changeset_factory :: Ecto.Changeset.t()
+  def changeset_factory do
+    %Ecto.Changeset{
+      valid?: true,
+      changes: %{
+        starts_at: ~U[2020-02-03 09:00:00Z],
+        ends_at: ~U[2020-02-04 18:30:59Z]
+      }
+    }
+  end
 end
