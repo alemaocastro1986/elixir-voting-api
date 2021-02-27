@@ -1,4 +1,7 @@
 defmodule Voting.Repo.Migrations.CreateElection do
+  @moduledoc """
+  Create a table election
+  """
   use Ecto.Migration
 
   def change do
@@ -8,8 +11,7 @@ defmodule Voting.Repo.Migrations.CreateElection do
       add :notice, :string
       add :starts_at, :utc_datetime, null: false
       add :ends_at, :utc_datetime, null: false
-      add :created_by_id, references(:administrators, on_delete: :nothing),
-      null: false
+      add :created_by_id, references(:administrators, on_delete: :nothing), null: false
 
       timestamps()
     end
