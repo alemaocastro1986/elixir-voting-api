@@ -1,4 +1,7 @@
 defmodule Voting.SignInAdminTest do
+  @moduledoc """
+  Signin admin tes
+  """
   use ExUnit.Case
   use Voting.DataCase, async: true
 

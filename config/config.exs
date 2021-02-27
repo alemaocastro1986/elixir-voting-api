@@ -35,6 +35,8 @@ config :voting, VotingWeb.Plugs.AuthAccessPipeline,
   module: VotingWeb.Guardian,
   error_handler: VotingWeb.Plugs.AuthErrorHandler
 
+config :voting, file_module: File
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

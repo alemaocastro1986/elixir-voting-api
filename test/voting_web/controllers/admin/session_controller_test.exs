@@ -1,10 +1,12 @@
 defmodule VotingWeb.Admin.SessionControllerTest do
+  @moduledoc """
+  Session Controller Test
+  """
+
   use ExUnit.Case
   use VotingWeb.ConnCase, async: true
 
   import Voting.Factory
-
-  alias VotingWeb.Admin
 
   @singn_in_route "/api/v1/admin/signin"
   @admin_valid %{"email" => "jane@voting.com", "password" => "123456"}

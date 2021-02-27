@@ -19,7 +19,10 @@ defmodule VotingWeb.Router do
   scope "/api/v1", VotingWeb do
     pipe_through :api_as_admin
 
-    post("/elections", Admin.ElectionController, :create)
+    resources "/elections", Admin.ElectionController, [:create, :update]
+    # post("/elections", Admin.ElectionController, :create)
+    # put("/elections", Admin.ElectionController, :update)
+    post("/uploads", Admin.UploadController, :create)
   end
 
   # Enables LiveDashboard only for development
@@ -29,6 +32,8 @@ defmodule VotingWeb.Router do
   # If your application does not have an admins-only section yet,
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
+
+  # coveralls-ignore-start
   if Mix.env() in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
 
@@ -37,4 +42,6 @@ defmodule VotingWeb.Router do
       live_dashboard "/dashboard", metrics: VotingWeb.Telemetry
     end
   end
+
+  # coveralls-ignore-stop
 end

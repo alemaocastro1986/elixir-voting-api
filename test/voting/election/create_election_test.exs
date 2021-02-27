@@ -10,7 +10,7 @@ defmodule Voting.CreateElectionTest do
   alias Voting.{CreateElection, Election}
 
   setup do
-    admin = insert(:admin)
+    _admin = insert(:admin)
     :ok
   end
 
@@ -109,7 +109,7 @@ defmodule Voting.CreateElectionTest do
       }
 
       assert {:error, %Ecto.Changeset{} = changeset} = CreateElection.run(params)
-      assert %{starts_at: ["start date cannot be less than end date"]} = errors_on(changeset)
+      assert %{starts_at: ["should be before ends_at"]} = errors_on(changeset)
     end
   end
 end
