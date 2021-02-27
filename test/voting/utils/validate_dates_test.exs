@@ -11,7 +11,13 @@ defmodule Voting.Utils.ValidateDatesTest do
 
   describe "is_before/3" do
     test "return a valid changeset" do
-      changeset = build(:changeset)
+      changeset =
+        :election
+        |> build()
+        |> Ecto.Changeset.change(%{
+          starts_at: ~U[2020-02-26 22:13:00Z],
+          ends_at: ~U[2020-02-26 23:59:59Z]
+        })
 
       assert %Ecto.Changeset{valid?: true, errors: errors} =
                ValidateDates.is_before(changeset, :starts_at, :ends_at)
@@ -21,18 +27,19 @@ defmodule Voting.Utils.ValidateDatesTest do
 
     test "returns error when the compared date is not before" do
       changeset =
-        build(:changeset, %{
-          changes: %{
-            starts_at: ~U[2020-02-05 09:00:00Z],
-            ends_at: ~U[2020-02-04 18:30:59Z]
-          }
+        changeset =
+        :election
+        |> build()
+        |> Ecto.Changeset.change(%{
+          starts_at: ~U[2020-02-27 22:13:00Z],
+          ends_at: ~U[2020-02-26 23:59:59Z]
         })
 
       assert %Ecto.Changeset{valid?: false, errors: errors} =
                ValidateDates.is_before(changeset, :starts_at, :ends_at)
 
       assert !Enum.empty?(errors)
-      assert [starts_at: {"start date cannot be less than end date", _}] = errors
+      assert [starts_at: {"should be before ends_at", _}] = errors
     end
   end
 end
