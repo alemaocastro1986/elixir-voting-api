@@ -109,7 +109,7 @@ defmodule Voting.CreateElectionTest do
       }
 
       assert {:error, %Ecto.Changeset{} = changeset} = CreateElection.run(params)
-      assert %{starts_at: ["start date cannot be less than end date"]} = errors_on(changeset)
+      assert %{starts_at: ["should be before ends_at"]} = errors_on(changeset)
     end
   end
 end

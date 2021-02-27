@@ -1,4 +1,4 @@
-defmodule Voting.UpdatedElection do
+defmodule Voting.UpdateElection do
   @moduledoc """
   Updated election
   """

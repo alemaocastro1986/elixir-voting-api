@@ -1,4 +1,4 @@
-defmodule Voting.UpdatedElectionTest do
+defmodule Voting.UpdateElectionTest do
   @moduledoc """
   Test create election
   """
@@ -7,7 +7,7 @@ defmodule Voting.UpdatedElectionTest do
 
   import Voting.Factory
 
-  alias Voting.{Election, UpdatedElection}
+  alias Voting.{Election, UpdateElection}
 
   describe "elections run/1" do
     test "return struct updated when the params are valid" do
@@ -22,7 +22,7 @@ defmodule Voting.UpdatedElectionTest do
         ends_at: ~U[2021-02-28 18:30:59Z]
       }
 
-      sut = UpdatedElection.run(election, params)
+      sut = UpdateElection.run(election, params)
 
       assert {:ok, %Election{} = election} = sut
       assert election.name == "Election updated 2024"
@@ -42,7 +42,7 @@ defmodule Voting.UpdatedElectionTest do
         ends_at: ~U[2021-02-28 18:30:59Z]
       }
 
-      assert {:error, %Ecto.Changeset{} = changeset} = UpdatedElection.run(election, params)
+      assert {:error, %Ecto.Changeset{} = changeset} = UpdateElection.run(election, params)
       assert %{name: ["can't be blank"]} = errors_on(changeset)
     end
 
@@ -53,7 +53,7 @@ defmodule Voting.UpdatedElectionTest do
         starts_at: nil
       }
 
-      assert {:error, %Ecto.Changeset{} = changeset} = UpdatedElection.run(election, params)
+      assert {:error, %Ecto.Changeset{} = changeset} = UpdateElection.run(election, params)
       assert %{starts_at: ["can't be blank"]} = errors_on(changeset)
     end
 
@@ -64,7 +64,7 @@ defmodule Voting.UpdatedElectionTest do
         ends_at: nil
       }
 
-      assert {:error, %Ecto.Changeset{} = changeset} = UpdatedElection.run(election, params)
+      assert {:error, %Ecto.Changeset{} = changeset} = UpdateElection.run(election, params)
       assert %{ends_at: ["can't be blank"]} = errors_on(changeset)
     end
 
@@ -79,8 +79,8 @@ defmodule Voting.UpdatedElectionTest do
         ends_at: ~U[2021-02-27 18:30:59Z]
       }
 
-      assert {:error, %Ecto.Changeset{} = changeset} = UpdatedElection.run(election, params)
-      assert %{starts_at: ["start date cannot be less than end date"]} = errors_on(changeset)
+      assert {:error, %Ecto.Changeset{} = changeset} = UpdateElection.run(election, params)
+      assert %{starts_at: ["should be before ends_at"]} = errors_on(changeset)
     end
   end
 end
