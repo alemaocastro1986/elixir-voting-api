@@ -14,6 +14,22 @@ defmodule VotingWeb.Admin.ElectionControllerTest do
     %{conn: conn}
   end
 
+  describe "index/2" do
+    test "returns an election list", %{conn: conn} do
+      insert(:election, name: "Election E")
+      insert(:election, name: "Election B")
+
+      response =
+        conn
+        |> get(Routes.election_path(conn, :index))
+        |> json_response(:ok)
+
+      assert is_list(response["data"])
+
+      assert [%{"name" => "Election B"}, %{"name" => "Election E"}] = response["data"]
+    end
+  end
+
   describe "create/2" do
     test "returns 201 status code when election create is sucessfully", %{conn: conn} do
       params = %{
